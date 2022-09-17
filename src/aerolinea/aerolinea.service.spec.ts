@@ -165,8 +165,6 @@ describe('AerolineaService', () => {
   });
 
   it('delete debe lanzar una excepcion por aerolinea invalida', async () => {
-    const aerolinea: AerolineaEntity = aerolineasList[0];
-    await service.delete(aerolinea.id);
     await expect(() => service.delete('0')).rejects.toHaveProperty(
       'message',
       'La aerolinea con el id no ha sido encontrada',
