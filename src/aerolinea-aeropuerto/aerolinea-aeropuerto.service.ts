@@ -29,7 +29,7 @@ export class AerolineaAeropuertoService {
       });
     if (!aeropuerto)
       throw new BusinessLogicException(
-        'El aeropuerto con el id no fue encontrado ',
+        'El aeropuerto con el id no fue encontrado',
         BusinessError.NOT_FOUND,
       );
     const aerolinea: AerolineaEntity = await this.aerolineaRepository.findOne({
@@ -75,7 +75,6 @@ export class AerolineaAeropuertoService {
         'El aeropuerto con el id no fue encontrado',
         BusinessError.NOT_FOUND,
       );
-
     const aerolinea: AerolineaEntity = await this.aerolineaRepository.findOne({
       where: { id: aerolineaId },
       relations: ['aeropuertos'],
@@ -110,10 +109,12 @@ export class AerolineaAeropuertoService {
         BusinessError.NOT_FOUND,
       );
     for (let i = 0; i < aeropuertos.length; i++) {
-      const aerolinea: AerolineaEntity = await this.aerolineaRepository.findOne(
-        { where: { id: aeropuertos[i].id }, relations: ['aerolineas'] },
-      );
-      if (!aerolinea)
+      const aeropuerto: AeropuertoEntity =
+        await this.aeropuertoRepository.findOne({
+          where: { id: aeropuertos[i].id },
+          relations: ['aerolineas'],
+        });
+      if (!aeropuerto)
         throw new BusinessLogicException(
           'El aeropuerto con el id no fue encontrado',
           BusinessError.NOT_FOUND,
@@ -131,7 +132,7 @@ export class AerolineaAeropuertoService {
       });
     if (!aeropuerto)
       throw new BusinessLogicException(
-        'La aerolinea con el id no fue encontrado',
+        'El aeropuerto con el id no fue encontrado',
         BusinessError.NOT_FOUND,
       );
     const aerolinea: AerolineaEntity = await this.aerolineaRepository.findOne({
@@ -140,11 +141,11 @@ export class AerolineaAeropuertoService {
     });
     if (!aerolinea)
       throw new BusinessLogicException(
-        'El aeropuerto con el id no fue encontrado',
+        'La aerolinea con el id no fue encontrado',
         BusinessError.NOT_FOUND,
       );
     const aerolineaAeropuerto: AeropuertoEntity = aerolinea.aeropuertos.find(
-      (e) => e.id === aerolinea.id,
+      (e) => e.id === aeropuerto.id,
     );
     if (!aerolineaAeropuerto)
       throw new BusinessLogicException(
