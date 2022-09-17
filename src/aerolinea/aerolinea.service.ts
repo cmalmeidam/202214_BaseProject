@@ -32,7 +32,9 @@ export class AerolineaService {
   }
 
   async create(aerolinea: AerolineaEntity): Promise<AerolineaEntity> {
-    if (aerolinea.fechaFundacion >= new Date())
+    const now = new Date();
+    now.setUTCHours(0, 0, 0, 0);
+    if (new Date(aerolinea.fechaFundacion) >= now)
       throw new BusinessLogicException(
         'La fecha de fundacion es mayor o igual a hoy',
         BusinessError.PRECONDITION_FAILED,
