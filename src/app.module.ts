@@ -7,7 +7,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AerolineaEntity } from './aerolinea/aerolinea.entity';
 import { AeropuertoEntity } from './aeropuerto/aeropuerto.entity';
 import { AerolineaAeropuertoModule } from './aerolinea-aeropuerto/aerolinea-aeropuerto.module';
-import { AerolineaAeropuertController } from './aerolinea-aeropuert/aerolinea-aeropuert.controller';
 
 @Module({
   imports: [
@@ -27,7 +26,7 @@ import { AerolineaAeropuertController } from './aerolinea-aeropuert/aerolinea-ae
     }),
     AerolineaAeropuertoModule,
   ],
-  controllers: [AppController, AerolineaAeropuertController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
